@@ -39,7 +39,7 @@ class CombatSimulator:
         titan_score = self._titan_threat_score(titan)
 
         # logistic-like squashing into [0.05, 0.95]
-        raw_advantage = (scout_score - titan_score) / 12.0
+        raw_advantage = (scout_score - titan_score) / self.ADVANTAGE_SCALING_FACTOR
         win_probability = max(0.05, min(0.95, 0.5 + raw_advantage))
 
         roll = random.random()
