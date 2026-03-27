@@ -32,7 +32,7 @@ dependencies = [
 aot = "aot.cli.main:app"
 
 [tool.setuptools]
-packages = ["aot", "aot.cli", "aot.core"]
+packages = ["aot", "aot.cli", "aot.core", "aot.engine"]
 
 [tool.setuptools.package-data]
 "aot" = ["data/*.json"]

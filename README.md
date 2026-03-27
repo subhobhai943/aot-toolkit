@@ -1,8 +1,8 @@
-# aot
+# 🪽 aot — Attack on Titan Python Toolkit
 
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)
 ![Build Status](https://github.com/your-org/aot/actions/workflows/python-app.yml/badge.svg)
-![Python Version](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
 
 A comprehensive Python library for the Attack on Titan universe. Features a complete offline data API, a physics engine for game development, and productivity-focused CLI utilities.
 
@@ -10,74 +10,88 @@ A comprehensive Python library for the Attack on Titan universe. Features a comp
 
 ## Why `aot`?
 
-`aot` is designed as a modular, batteries-included toolkit for fans and developers building Attack on Titan-inspired projects. Phase 1 focuses on a fast offline data engine, clean documentation, and CI/CD foundations.
+`aot` is built for developers who want a clean, modular toolkit with zero external web calls for core lore data, a rich terminal experience, and extensible simulation primitives for game mechanics.
 
-## Features (Phase 1)
+### Highlights
 
-- ✅ Offline JSON-backed database for characters, titans, and quotes.
-- ✅ Structured core module with custom exception handling.
-- ✅ Fuzzy, case-insensitive lookups.
-- ✅ Tag- and character-filtered random quote retrieval.
-- ✅ CI pipeline across Python 3.10–3.12.
+- 📚 **Offline Data API** for characters, titans, and quotes.
+- 🖥️ **CLI Experience** with `aot fetch` for stylized system + lore output.
+- ⚙️ **Game Physics Layer** with ODM movement and combat simulation.
+- 🧩 **Modular Architecture** designed for growth into CLI/game tooling.
+
+---
 
 ## Installation
 
 ```bash
-pip install aot
+pip install .
 ```
 
-> For local development:
+---
+
+## CLI Usage
+
+Run the themed fetch view (similar spirit to `neofetch`):
 
 ```bash
-pip install -e .
+aot fetch
 ```
 
-## Quick Start
+Expected output includes:
+
+- Scout Regiment ASCII art
+- System information (OS, kernel, CPU, RAM, uptime, rank)
+- A random AoT quote from the offline database
+
+---
+
+## Data API Usage
 
 ```python
 from aot.core.database import AoTDatabase
 
-# Singleton instance
 db = AoTDatabase()
-
-character = db.get_character("levi")
-print(character["full_name"])  # Levi Ackerman
-
-titan = db.get_titan("attack")
-print(titan["name"])  # Attack Titan
-
 quote = db.get_random_quote(tag="motivational")
 print(f"{quote['character_name']}: {quote['quote_text']}")
 ```
 
-## Project Layout
+---
+
+## Game Engine Usage
+
+```python
+from aot.core.database import AoTDatabase
+from aot.engine.combat import CombatSimulator
+from aot.engine.odm_gear import ODMGear
+
+# ODM physics/resource simulation
+gear = ODMGear(gas_capacity=100.0, blade_durability=100)
+print(gear.grapple(distance_m=120.0, speed="fast"))
+
+# Combat simulation using offline data
+db = AoTDatabase()
+sim = CombatSimulator(database=db)
+outcome = sim.simulate_encounter("Levi", "Armored")
+print(outcome)
+```
+
+---
+
+## Project Structure
 
 ```text
 .
-├── .github/
-│   └── workflows/
-│       └── python-app.yml
 ├── aot/
-│   ├── __init__.py
-│   ├── core/
-│   │   ├── __init__.py
-│   │   ├── database.py
-│   │   └── exceptions.py
-│   └── data/
-│       ├── characters.json
-│       ├── titans.json
-│       └── quotes.json
+│   ├── core/       # Offline database engine
+│   ├── cli/        # Terminal UI and commands
+│   ├── engine/     # Physics and combat simulation
+│   └── data/       # JSON lore datasets
 ├── tests/
-│   └── test_database.py
-├── pyproject.toml
-└── README.md
+├── .github/workflows/
+└── pyproject.toml
 ```
 
-## Roadmap
-
-- Phase 1: Core Data Engine, Documentation, CI/CD
-- Phase 2: CLI and command set expansion
-- Phase 3: Physics engine and gameplay simulation modules
+---
 
 ## License
 
