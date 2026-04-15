@@ -25,7 +25,7 @@
 ## 📦 Installation
 
 ```bash
-pip install AOT-Toolkit
+pip install aot-toolkit
 ```
 
 ---
